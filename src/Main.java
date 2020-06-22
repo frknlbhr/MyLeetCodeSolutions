@@ -131,6 +131,44 @@ public class Main {
     }
 
 
+    /*Merge two sorted linked lists and return it as a new sorted list. The new list should be made by splicing together the nodes of the first two lists.
+        Example:
+    Input: 1->2->4, 1->3->4
+    Output: 1->1->2->3->4->4
+    */
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode result = null;
+        ListNode currentNode = new ListNode();
+
+        while (l1 != null || l2 != null) {
+            int value1 = l1 != null ? l1.val : Integer.MAX_VALUE;
+            int value2 = l2 != null ? l2.val : Integer.MAX_VALUE;
+            int minValue = Math.min(value1, value2);
+            ListNode currentNodeResult = new ListNode(minValue);
+            if (value1 != value2) {
+                if (minValue == value1)
+                    l1 = l1 != null ? l1.next : null;
+                if (minValue == value2)
+                    l2 = l2 != null ? l2.next : null;
+            }
+            else {
+                l1 = l1 != null ? l1.next : null;
+            }
+
+            if (result == null) {
+                result = new ListNode(minValue, null);
+                currentNode = result;
+            }
+            else {
+                if (minValue != Integer.MAX_VALUE) {
+                    currentNode.next = currentNodeResult;
+                    currentNode = currentNode.next;
+                }
+            }
+        }
+        return result;
+    }
+
 
     public static int hammingWeight(int n) {
         byte[] result = new byte[4];
