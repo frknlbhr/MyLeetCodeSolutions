@@ -1,4 +1,4 @@
-package deneme;
+package deneme.leetcode;
 
 /**
  * @author Furkan İlbahar
