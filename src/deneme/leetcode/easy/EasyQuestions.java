@@ -2,9 +2,7 @@ package deneme.leetcode.easy;
 
 import deneme.leetcode.ListNode;
 
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Furkan İlbahar
@@ -239,11 +237,11 @@ public class EasyQuestions {
         Example 1:
             Input: 1
             Output: true
-            Explanation: 20 = 1
+            Explanation: 2^0 = 1
         Example 2:
             Input: 16
             Output: true
-            Explanation: 24 = 16
+            Explanation: 2^4 = 16
         Example 3:
             Input: 218
             Output: false*/
@@ -264,6 +262,35 @@ public class EasyQuestions {
             bolum = bolum / 2;
         }
         return true;
+    }
+
+
+    /* 448. Find All Numbers Disappeared in an Array
+    Given an array of integers where 1 ≤ a[i] ≤ n (n = size of array), some elements appear twice and others appear once.
+    Find all the elements of [1, n] inclusive that do not appear in this array.
+    Could you do it without extra space and in O(n) runtime? You may assume the returned list does not count as extra space.
+        Example:
+            Input:
+                [4,3,2,7,8,2,3,1]
+            Output:
+                [5,6]*/
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        int n = nums.length;
+        List<Integer> resutList = new ArrayList<>();
+
+        boolean[] visited = new boolean[n+1];
+        for (int i = 0; i < n; i++){
+            if(!visited[nums[i]]) {
+                visited[nums[i]] = true;
+            }
+        }
+
+        // indices which are not true, are disappeared numbers
+        for (int i = 1; i <= n; i++) {
+            if (!visited[i])
+                resutList.add(i);
+        }
+        return resutList;
     }
 
 }
