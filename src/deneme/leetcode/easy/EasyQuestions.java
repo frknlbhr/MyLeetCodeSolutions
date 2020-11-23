@@ -140,6 +140,40 @@ public class EasyQuestions {
     }
 
 
+    /* 69. Sqrt(x)
+    Given a non-negative integer x, compute and return the square root of x.
+    Since the return type is an integer, the decimal digits are truncated, and only the integer part of the result is returned.
+        Example 1:
+            Input: x = 4
+            Output: 2
+        Example 2:
+            Input: x = 8
+            Output: 2
+            Explanation: The square root of 8 is 2.82842..., and since the decimal part is truncated, 2 is returned.
+    Constraints: 0 <= x <= 2^31 - 1 */
+    public static int mySqrt(int x) {
+        if (x == 1) return 1;
+        if (x == 0) return 0;
+
+        long start = 0;
+        long finish = x;
+        long mid = x / 2;
+        while (start != finish && start + 1 != finish) {
+            if (mid * mid == x) return (int) mid;
+
+            if (mid * mid > x) {
+                finish = mid;
+                mid = (start + finish) / 2;
+            }
+            else if (mid * mid < x) {
+                start = mid;
+                mid = (start + finish) / 2;
+            }
+        }
+        return (int) mid;
+    }
+
+
     /* 190. Reverse Bits
     Reverse bits of a given 32 bits unsigned integer.
         Example 1:
@@ -274,7 +308,7 @@ public class EasyQuestions {
                 [4,3,2,7,8,2,3,1]
             Output:
                 [5,6]*/
-    public List<Integer> findDisappearedNumbers(int[] nums) {
+    public static List<Integer> findDisappearedNumbers(int[] nums) {
         int n = nums.length;
         List<Integer> resutList = new ArrayList<>();
 
